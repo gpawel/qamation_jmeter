@@ -1,6 +1,5 @@
 package org.qamation.jmeter.java.sampler.abstracts;
 
-import org.qamation.excel.utils.ExcelUtils;
 import org.apache.jmeter.config.Arguments;
 
 

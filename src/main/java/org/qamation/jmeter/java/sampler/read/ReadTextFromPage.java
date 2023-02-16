@@ -1,10 +1,10 @@
 package org.qamation.jmeter.java.sampler.read;
 
 
+import org.qamation.commons.web.page.WebPageFactory;
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionReadFromPage;
-import org.qamation.utils.StringUtils;
-import org.qamation.web.page.Page;
-import org.qamation.webdriver.utils.BasedWebDriverInstanceFactory;
+import org.qamation.commons.utils.StringUtils;
+import org.qamation.commons.web.page.Page;
 import org.apache.jmeter.config.Arguments;
 
 
@@ -37,7 +37,7 @@ public class ReadTextFromPage  extends AbstractExtentionReadFromPage {
 	
 	@Override
 	protected Page createPage() {
-		Page p = (Page) BasedWebDriverInstanceFactory.createInstance(pageImplementationClass, driver);
+		Page p = WebPageFactory.createPageInstance(pageImplementationClass, driver);
 		return p;
 		
 	}

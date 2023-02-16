@@ -5,7 +5,8 @@ import org.apache.jmeter.samplers.SampleResult;
 import org.openqa.selenium.Keys;
 
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionKeyBoard;
-import org.qamation.utils.StringUtils;
+import org.qamation.commons.utils.StringUtils;
+import org.qamation.keyboard.KeyboardEmulator;
 
 public class HitEnter extends AbstractExtentionKeyBoard {
 

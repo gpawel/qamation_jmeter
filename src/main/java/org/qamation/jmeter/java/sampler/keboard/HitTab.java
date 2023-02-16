@@ -4,7 +4,7 @@ import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionKeyBoard;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 import org.openqa.selenium.Keys;
-import org.qamation.utils.StringUtils;
+import org.qamation.commons.utils.StringUtils;
 public class HitTab extends AbstractExtentionKeyBoard {
 
 private final static String HOW_MANY = "ENTER NUMBER OF TIMES TO HIT TAB KEY"; 

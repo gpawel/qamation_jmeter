@@ -54,7 +54,6 @@ public class PageNavigator extends AbstractExtentionPage {
 
 	protected void initPageInstance() {
 		page = getPageInstance();
-		page.resetTimer();
 	}
 
 
@@ -64,7 +63,7 @@ public class PageNavigator extends AbstractExtentionPage {
 		WebPageNavigator navigator = getWebPageNavigator();
 		String[] tokens = getNavigationTokens(navigationSequence, navigationSequenceDelimeter);
 		long start_ts = System.currentTimeMillis();
-		navigator.processNavigationSequence(tokens, page);
+		navigator.processNavigationSequence(tokens);
 		long end_ts = System.currentTimeMillis();
 		return end_ts - start_ts;
 	}

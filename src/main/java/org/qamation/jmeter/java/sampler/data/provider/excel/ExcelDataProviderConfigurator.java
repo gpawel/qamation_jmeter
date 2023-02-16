@@ -7,7 +7,7 @@ import org.qamation.excel.utils.ExcelUtils;
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExcelDataProvider;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
-import org.qamation.utils.FileUtils;
+import org.qamation.commons.utils.FileUtils;
 
 public class ExcelDataProviderConfigurator  extends AbstractExcelDataProvider {
     private static final Logger log = LoggingManager.getLoggerForClass();

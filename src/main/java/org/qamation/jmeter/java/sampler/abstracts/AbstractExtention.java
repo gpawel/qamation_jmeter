@@ -6,8 +6,8 @@ import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.threads.JMeterContextService;
 import org.apache.jmeter.threads.JMeterVariables;
-import org.qamation.utils.RegExpUtils;
-import org.qamation.utils.StringUtils;
+import org.qamation.commons.utils.RegExpUtils;
+import org.qamation.commons.utils.StringUtils;
 /*
 public static final String EXTRACT_FUNCTION_PARAMETERS_REGEX = "(?mi)\\((.*)\\)";
     public static final String EXTRACT_FUNCTION_NAME = "(?mi)\\$\\{__(.*?)\\(";

@@ -5,7 +5,7 @@ import org.apache.jorphan.logging.LoggingManager;
 import org.apache.log.Logger;
 import org.qamation.excel.utils.ExcelUtils;
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExcelDataProvider;
-import org.qamation.utils.StringUtils;
+import org.qamation.commons.utils.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 
@@ -16,14 +16,13 @@ public class ExcelDataReader extends AbstractExcelDataProvider {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
     private final static String DATA_PROVIDER_NAME = "DATA PROVIDER NAME";
-    private StringBuffer currentLine;
+    private StringBuilder currentLine = new StringBuilder();
     private Iterator<String[]> it;
     private String[] fieldNames;
     protected ExcelUtils excelUtils;
 
     public Arguments getDefaultParameters() {
-        Arguments defaultParameters = super.getDefaultParameters();
-        return defaultParameters;
+        return super.getDefaultParameters();
     }
     protected void readSamplerParameters() {
         super.readSamplerParameters();
@@ -45,7 +44,6 @@ public class ExcelDataReader extends AbstractExcelDataProvider {
         setStringIntoVariables(hasNextVarName,String.valueOf(it.hasNext()));
     }
     private void saveLineInContext(String[] line) {
-        currentLine = new StringBuffer();
         for (int i=0; i<fieldNames.length; i++) {
             String value = substituteVariables(line[i]);
             setStringIntoVariables(fieldNames[i],value);

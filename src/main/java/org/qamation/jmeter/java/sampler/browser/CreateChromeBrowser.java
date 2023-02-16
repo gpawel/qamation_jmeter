@@ -3,7 +3,7 @@ package org.qamation.jmeter.java.sampler.browser;
 import java.net.URL;
 
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionBrowser;
-import org.qamation.webdriver.utils.WebDriverFactory;
+import org.qamation.commons.webdriver.WebDriverFactory;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 import org.openqa.selenium.WebDriver;

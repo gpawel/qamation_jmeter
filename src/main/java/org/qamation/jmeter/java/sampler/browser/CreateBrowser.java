@@ -1,7 +1,7 @@
 package org.qamation.jmeter.java.sampler.browser;
 
+import org.qamation.commons.webdriver.WebDriverFactory;
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionBrowser;
-import org.qamation.webdriver.utils.WebDriverFactory;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 import org.openqa.selenium.WebDriver;
@@ -10,10 +10,10 @@ import java.net.URL;
 
 
 public class CreateBrowser extends AbstractExtentionBrowser {
-    protected static final String BROWSER_NAME = "SELECT BROWSER TO CREATE: Chrome, FF, IE";
+    protected static final String BROWSER_NAME = "SELECT BROWSER TO CREATE: Chrome, FF, Edge";
     protected static final String BROWSER_TYPE = "SELECT BROWSER TYPE: Local or Remote";
     protected static final String CHROME_DRIVER_PATH = "ENTER PATH TO CHROME DRIVER.";
-    protected static final String IE_DRIVER_PATH = "ENTER PATH TO IE DRIVER.";
+    protected static final String EDGE_DRIVER_PATH = "ENTER PATH TO EDGE DRIVER.";
     protected static final String FF_DRIVER_PATH = "ENTER PATH TO FF DRIVER";
 
     protected String browserName;
@@ -28,7 +28,7 @@ public class CreateBrowser extends AbstractExtentionBrowser {
         defaultParameters.addArgument(BROWSER_NAME,"Chrome");
         defaultParameters.addArgument(BROWSER_TYPE,"Local");
         defaultParameters.addArgument(CHROME_DRIVER_PATH, "${CHROME_DRIVER_PATH}");
-        defaultParameters.addArgument(IE_DRIVER_PATH,"${IE_DRIVER_PATH}");
+        defaultParameters.addArgument(EDGE_DRIVER_PATH,"${IE_DRIVER_PATH}");
         defaultParameters.addArgument(FF_DRIVER_PATH,"${FF_DRIVER_PATH}");
         return defaultParameters;
     }
@@ -39,7 +39,7 @@ public class CreateBrowser extends AbstractExtentionBrowser {
         browserName = getSamplerParameterValue(BROWSER_NAME);
         browserType = getSamplerParameterValue(BROWSER_TYPE);
         chromeDriverPath = getSamplerParameterValue(CHROME_DRIVER_PATH);
-        ieDriverPath = getSamplerParameterValue(IE_DRIVER_PATH);
+        ieDriverPath = getSamplerParameterValue(EDGE_DRIVER_PATH);
         ffDriverPath = getSamplerParameterValue(FF_DRIVER_PATH);
     }
 
@@ -72,8 +72,8 @@ public class CreateBrowser extends AbstractExtentionBrowser {
             if (browserName.equalsIgnoreCase("ff")) {
                 dr = WebDriverFactory.createRemoteFFWebDriver(hub);
             }
-            else if (browserName.equalsIgnoreCase("ie")) {
-                dr = WebDriverFactory.createRemoteIEDriver(hub);
+            else if (browserName.equalsIgnoreCase("edge")) {
+                dr = WebDriverFactory.createRemoteEdgeDriver(hub);
             }
             else dr = WebDriverFactory.createRemoteChromeDriver(hub);
         }
@@ -81,8 +81,8 @@ public class CreateBrowser extends AbstractExtentionBrowser {
             if (browserName.equalsIgnoreCase("ff")) {
                 dr = WebDriverFactory.createFFWebDriver(ffDriverPath);
             }
-            if (browserName.equalsIgnoreCase("ie")) {
-                dr = WebDriverFactory.createIEWebDriver(ieDriverPath);
+            if (browserName.equalsIgnoreCase("edge")) {
+                dr = WebDriverFactory.createEdgeWebDriver(ieDriverPath);
             }
         }
         if (dr == null) dr = WebDriverFactory.createChromeWebDriver(chromeDriverPath);

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.qamation.jmeter.java.sampler.exceptions.StringComparisonException;
-import org.qamation.utils.StringUtils;
+import org.qamation.commons.utils.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 
@@ -57,8 +57,11 @@ public class PageProcessor extends PageNavigatAndCheck {
         if (shouldVerifyText) {
             ExpectedCondition<String> condition = getCondition(elementLocator, expectedResult);
             try {
-                readText = page.isReady(condition);
-                return passed;
+                if (page.isReady(condition)) {
+                    readText = page.readTextFrom(elementLocator);
+                    return passed;
+                }
+                else throw new RuntimeException("Unable to read test from "+elementLocator);
             }
             catch (TimeoutException ex) {
                 readText = readText();

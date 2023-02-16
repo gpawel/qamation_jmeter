@@ -1,8 +1,7 @@
 package org.qamation.jmeter.java.sampler.abstracts;
 
-import org.qamation.keyboard.Keyboard;
-import org.qamation.keyboard.KeyboardFactory;
-import org.qamation.utils.StringUtils;
+import org.qamation.keyboard.KeyboardEmulator;
+import org.qamation.commons.utils.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 
@@ -16,7 +15,7 @@ public abstract class AbstractExtentionKeyBoard extends AbstractExtentionBrowser
 	protected String keyboardImplementationClass;
 	protected String locationDescription;
 	protected String stringToEnter;
-	protected Keyboard keyboard;
+	protected KeyboardEmulator keyboard;
 	
 	@Override
 	public Arguments getDefaultParameters() {
@@ -40,7 +39,7 @@ public abstract class AbstractExtentionKeyBoard extends AbstractExtentionBrowser
 	
 	
 	private void createKeyboard() {
-		keyboard = KeyboardFactory.createKeyboard(keyboardImplementationClass, driver);
+		keyboard = new KeyboardEmulator(driver);
 	}
 	
 	protected void toDo() {

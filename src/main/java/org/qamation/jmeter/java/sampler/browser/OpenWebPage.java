@@ -1,9 +1,9 @@
 package org.qamation.jmeter.java.sampler.browser;
 
 import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionPage;
-import org.qamation.utils.StringUtils;
-import org.qamation.web.page.Page;
-import org.qamation.web.page.WebPageFactory;
+import org.qamation.commons.utils.StringUtils;
+import org.qamation.commons.web.page.Page;
+import org.qamation.commons.web.page.WebPageFactory;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 

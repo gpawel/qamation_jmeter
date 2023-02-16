@@ -2,7 +2,7 @@ package org.qamation.jmeter.java.sampler.abstracts;
 
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
-import org.qamation.web.page.Page;
+import org.qamation.commons.web.page.Page;
 
 
 public abstract class AbstractExtentionReadFromPage extends AbstractExtentionPage {
