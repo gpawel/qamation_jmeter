@@ -7,13 +7,16 @@ import org.qamation.commons.web.page.WebPageFactory;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class OpenWebPage extends AbstractExtentionPage {
 
 	protected static final String URL_TO_OPEN = "ENTER WEB PAGE TO BE OPENED";
 	long start_ts;
 	long end_ts;
-	String url;
+	String url_string;
 	
 	public Arguments getDefaultParameters() {
         Arguments defaultParameters = super.getDefaultParameters();
@@ -23,21 +26,27 @@ public class OpenWebPage extends AbstractExtentionPage {
 
 	protected void readSamplerParameters() {
 		super.readSamplerParameters();
-		url = getSamplerParameterValue(URL_TO_OPEN);
+		url_string = getSamplerParameterValue(URL_TO_OPEN);
 	}
 
 	@Override
 	protected void toDo() {
-		Page page = WebPageFactory.createPageInstance(pageImplementationClass, driver);
-		start_ts = System.currentTimeMillis();end_ts=0;
-		page.openPage(url);
-		end_ts = System.currentTimeMillis();
+		try {
+			Page page = WebPageFactory.createPageInstance(pageImplementationClass, driver);
+			start_ts = System.currentTimeMillis();
+			end_ts = 0;
+			page.openPage(new URL(url_string));
+			end_ts = System.currentTimeMillis();
+		}
+		catch (MalformedURLException ex) {
+			throw new RuntimeException("Unable to open a page by provided url string: "+ url_string);
+		}
 	}
 
 	@Override
 	protected SampleResult assembleTestResult() {
 		String term = getDuration(end_ts - start_ts);
-		String message = "PAGE at "+url+" IS OPENED. "+term;
+		String message = "PAGE at "+ url_string +" IS OPENED. "+term;
 		SampleResult result = setSuccess(message,message,message);
 		return result;
 	}

@@ -1,11 +1,15 @@
 package org.qamation.jmeter.java.sampler.browser;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLDecoder;
 
+import org.openqa.selenium.By;
 import org.qamation.jmeter.java.sampler.exceptions.StringComparisonException;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
+import org.qamation.locator.LocatorFactory;
 
 
 public class PageNavigatAndCheck extends PageNavigator {
@@ -90,11 +94,17 @@ public class PageNavigatAndCheck extends PageNavigator {
 	}
 
 	protected void goToBackURL(String url) {
-	    page.goBack(url);
+		try {
+			page.openPage(new URL(url));
+		}
+		catch (MalformedURLException ex) {
+			throw new RuntimeException("Provided ur: "+url+" cannot be be parsed into Java URL object");
+		}
 	}
 
 	protected String readText() {
-		return page.readTextFrom(elementLocator, expectedResult.length());
+		By locator = LocatorFactory.getLocator(elementLocator);
+		return page.readTextFrom(locator).substring(0, expectedResult.length());
 	}
 
 	protected String URLDecodeString(String str) {

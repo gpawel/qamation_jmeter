@@ -9,6 +9,7 @@ import org.qamation.jmeter.java.sampler.exceptions.StringComparisonException;
 import org.qamation.commons.utils.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
+import org.qamation.locator.LocatorFactory;
 
 
 public class PageProcessor extends PageNavigatAndCheck {
@@ -58,7 +59,7 @@ public class PageProcessor extends PageNavigatAndCheck {
             ExpectedCondition<String> condition = getCondition(elementLocator, expectedResult);
             try {
                 if (page.isReady(condition)) {
-                    readText = page.readTextFrom(elementLocator);
+                    readText = page.readTextFrom(LocatorFactory.getLocator(elementLocator));
                     return passed;
                 }
                 else throw new RuntimeException("Unable to read test from "+elementLocator);
@@ -80,7 +81,7 @@ public class PageProcessor extends PageNavigatAndCheck {
     }
 
     protected String extractFromPage(String extractFrom) {
-        String value = page.readTextFrom(extractFrom);
+        String value = page.readTextFrom(LocatorFactory.getLocator(extractFrom));
         return value;
     }
 
@@ -133,7 +134,7 @@ public class PageProcessor extends PageNavigatAndCheck {
         ExpectedCondition<String> condition = new ExpectedCondition<String>() {
             @Override
             public String apply(WebDriver webDriver) {
-                String read = page.readTextFrom(location,expectedString.length());
+                String read = page.readTextFrom(LocatorFactory.getLocator(location)).substring(0,expectedString.length());
                 if (read.equals(expectedString)) return read;
                 else return null;
             }

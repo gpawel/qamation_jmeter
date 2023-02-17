@@ -6,7 +6,7 @@ import org.qamation.jmeter.java.sampler.abstracts.AbstractExtentionReadFromPage;
 import org.qamation.commons.utils.StringUtils;
 import org.qamation.commons.web.page.Page;
 import org.apache.jmeter.config.Arguments;
-
+import org.qamation.locator.LocatorFactory;
 
 
 public class ReadTextFromPage  extends AbstractExtentionReadFromPage {
@@ -44,13 +44,8 @@ public class ReadTextFromPage  extends AbstractExtentionReadFromPage {
 
 	@Override
 	protected String readText() {
-		if (length > 0) return page.readTextFrom(readFromlocationDescription, length);
-		return page.readTextFrom(readFromlocationDescription);  
+		String read_str = page.readTextFrom(LocatorFactory.getLocator(readFromlocationDescription));
+		if (length > 0) return read_str.substring(0,length);
+		return read_str;
 	}
-	
-
-	
-	
-	
-	
 }
